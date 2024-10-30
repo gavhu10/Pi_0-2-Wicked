@@ -9,6 +9,8 @@ This is a fork for the Pi 2 W (Not tested yet)
 # TODO
 Add more payloads
 
-Set red button to the power off button
+Convert bunny-launcher.py to C++ (maybe)
+
+Icrease boot speed
 
 Make boot partion read-only in setup.sh to protect the sd card
