@@ -8,5 +8,7 @@ This is a fork for the Pi 2 W (Not tested yet)
 
 # TODO
 Add more payloads
+
 Set red button to the power of button
+
 Make boot partion read-only in setup.sh to protect the sd card
