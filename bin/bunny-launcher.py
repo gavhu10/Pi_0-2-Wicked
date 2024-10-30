@@ -21,9 +21,10 @@ PAYLOAD_DIR = "/bunny/payloads"
 TCP_PORT = 18861
 
 # IO port definitions
-IO_LEDS = {"green":19, "red":11} # green on gpio 19. etc
-IO_DIP = [2, 3, 4, 17] # Dip switch1 on io pin2, switch2 on io pin3 etc.
-IO_BUTTONS = {"green":13, "red":10} # green button on io 13 etc
+IO_LEDS = {"green":19, "red":6} # green on gpio 19. etc
+# More Dip switches! 
+IO_DIP = [10, 22, 27, 17, 9, 4, 3, 2] # Dip switch1 on io pin2, switch2 on io pin3 etc.
+IO_BUTTONS = {"green":13, "red":6} # green button on io 13 etc
 
 
 
@@ -86,11 +87,11 @@ def handleButtons():
            else: # File didn't exist
                logging.info("No script file at: {0}".format(launchFile))
 
-
+# TODO Add the rest of the switches to getSwitch()
 
 # Returns decimal reprecentation of the DIP switches. Eg: Switches set to 1001, returns 9
 def getSwitch():
-    value = 15 - ( GPIO.input(IO_DIP[0])*1 + GPIO.input(IO_DIP[1])*2 +  GPIO.input(IO_DIP[2])*4 + GPIO.input(IO_DIP[3])*8 )
+    value = 63 - ( GPIO.input(IO_DIP[0])*1 + GPIO.input(IO_DIP[1])*2 +  GPIO.input(IO_DIP[2])*4 + GPIO.input(IO_DIP[3])*8 + GPIO.input(IO_DIP[4])*16 + GPIO.input(IO_DIP[5])*32)
     return value
 
 
