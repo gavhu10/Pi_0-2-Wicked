@@ -47,10 +47,10 @@ def setupIO():
         GPIO.setup(ledPin, GPIO.OUT)
     # Dip Switches as pulled up inputs
     for dipPin in IO_DIP:
-        GPIO.setup(dipPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(dipPin, GPIO.IN)
     # Buttons as pulled up imputs
     for buttonName, buttonPin in IO_BUTTONS.items():
-        GPIO.setup(buttonPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(buttonPin, GPIO.IN)
     logging.info("IO setup completed")
 
 
