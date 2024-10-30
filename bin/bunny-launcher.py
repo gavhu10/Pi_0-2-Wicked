@@ -79,6 +79,9 @@ def handleButtons():
     for buttonName, buttonPin in IO_BUTTONS.items(): # Traverse all buttons defined in the list
         if not GPIO.input(buttonPin): # Button pressed 
            logging.info ("{} button pressed.".format(buttonName))
+           if buttonName == 'red':
+               logging.info('Shutting down')
+               os.system('sudo shutdown now')
            launchFile = PAYLOAD_DIR + "/" + str(getSwitch()) + "/button_" + buttonName 
            if os.path.exists(launchFile): # The file exists
                logging.info("Launching script at: {0}".format(launchFile))
@@ -87,11 +90,13 @@ def handleButtons():
            else: # File didn't exist
                logging.info("No script file at: {0}".format(launchFile))
 
-# TODO Add the rest of the switches to getSwitch()
 
 # Returns decimal reprecentation of the DIP switches. Eg: Switches set to 1001, returns 9
 def getSwitch():
-    value = 63 - ( GPIO.input(IO_DIP[0])*1 + GPIO.input(IO_DIP[1])*2 +  GPIO.input(IO_DIP[2])*4 + GPIO.input(IO_DIP[3])*8 + GPIO.input(IO_DIP[4])*16 + GPIO.input(IO_DIP[5])*32)
+    value = 255 - ( GPIO.input(IO_DIP[0])*1 + GPIO.input(IO_DIP[1])*2 +  
+                  GPIO.input(IO_DIP[2])*4 + GPIO.input(IO_DIP[3])*8 + 
+                  GPIO.input(IO_DIP[4])*16 + GPIO.input(IO_DIP[5])*32 + 
+                 GPIO.input(IO_DIP[6])*64 + GPIO.input(IO_DIP[7])*128)
     return value
 
 
